@@ -1,0 +1,21 @@
+{
+  "person": [
+    {
+      "first_name": "Jonathan",
+      "last_name": "Manalo",
+      "address": [
+        {
+          "City": "Imus",
+          "Province": "Cavite",
+          "Country": "Philippines"
+        },
+        {
+          "Street": "5th",
+          "City": "Manila",
+          "Province": "NCR",
+          "Country": "Philippines"
+        }
+      ]
+    }
+  ]
+}
