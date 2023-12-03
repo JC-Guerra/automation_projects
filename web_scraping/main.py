@@ -1,8 +1,9 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from time import sleep
+import get_info
 
-def get_driver():
+#selenium update conflicts with other packages, run in virtual environment
+
+def get_driver(link):
 #Set options to make browsing easier
     options = webdriver.ChromeOptions()
     options.add_argument("disable-infobars")
@@ -13,25 +14,19 @@ def get_driver():
     options.add_argument("disable-blink-features=AutomationControlled")
 
     driver = webdriver.Chrome(options=options)
-    driver.get("https://automated.pythonanywhere.com/")
+    driver.get(link)
     return driver
 
-def get_temp(temp):
-    """Extracting temp value only"""
-    try:
-        element = float(temp[-2:])
-    except:
-        print("Increase time.sleep(s)")
-    return element
+def main():
+    link = "https://automated.pythonanywhere.com/"
+    driver = get_driver(link)
 
-def obtain_values(header, temp):
-    driver = get_driver()
-    time.sleep(3)
-    element_header = driver.find_element(By.XPATH, header)
-    element_temp = driver.find_element(By.XPATH, temp)
-    return (element_header.text, get_temp(element_temp.text))
+    header_xpath = "/html/body/div[1]/div/h1[1]"
+    temp_xpath = "/html/body/div[1]/div/h1[2]"
+    scraped_values = get_info.obtain_values(driver, header_xpath, temp_xpath)
+    print(f"header: {scraped_values[0]} \nworld temperature: {scraped_values[1]}")
 
-scraped_values = obtain_values("/html/body/div[1]/div/h1[1]", "/html/body/div[1]/div/h1[2]")
+    driver.quit()
 
-
-print(f"header: {scraped_values[0]} \nworld temperature: {scraped_values[1]}")
+if __name__ == "__main__":
+    main()
