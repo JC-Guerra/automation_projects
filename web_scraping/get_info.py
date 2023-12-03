@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 import time
 
 def get_temp(temp):
-    """Extracting temp value only"""
+    #extract temp value
     try:
         element = float(temp[-2:])
     except ValueError as e:
