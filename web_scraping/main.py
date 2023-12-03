@@ -1,6 +1,5 @@
 from selenium import webdriver
-import time
-import get_info
+from selenium.webdriver.common.by import By
 import automated_login
 from datetime import datetime as dt
 import save_file
@@ -31,19 +30,11 @@ def main(link):
     try:
         automated_login.user_login(driver, link)
         print("Successfully logged in")
-        automated_login.return_to_home(driver)
+        automated_login.go_to_contact_us(driver)
 
-        header_xpath = "/html/body/div[1]/div/h1[1]"
-        temp_xpath = "/html/body/div[1]/div/h1[2]"
-
-        flag = 0
-        while flag < 3:
-            flag += 1
-            header_value, temp_value = get_info.obtain_values(driver, header_xpath, temp_xpath)
-            content = f"Header: {header_value} \nWorld temperature: {temp_value}"
-
-            save_file.write_file(content)
-            print(f"File has been written with the following: \n{content}")
+        css_selector = "#shopify-section-page-contact-us"
+        contact_sc = driver.find_element(By.CSS_SELECTOR, css_selector)
+        contact_sc.screenshot("contact_us_screenshot.png")
 
     finally:
         if driver is not None:
@@ -51,5 +42,5 @@ def main(link):
             print("Driver resources removed")
 
 if __name__ == "__main__":
-    link = link = "https://automated.pythonanywhere.com/login"
+    link = link = "https://titan22.com/account/login?return_url=%2Faccount"
     main(link)

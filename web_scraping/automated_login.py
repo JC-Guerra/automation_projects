@@ -17,13 +17,13 @@ def read_credentials():
 def user_login(driver, link):
     try:
         #detect element first
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "id_username")))
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "id_password")))
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "CustomerEmail")))
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "CustomerPassword")))
 
         #enter credentials
         username, password = read_credentials()
-        driver.find_element(By.ID, "id_username").send_keys(username)
-        driver.find_element(By.ID, "id_password").send_keys(password + Keys.RETURN)
+        driver.find_element(By.ID, "CustomerEmail").send_keys(username)
+        driver.find_element(By.ID, "CustomerPassword").send_keys(password + Keys.RETURN)
 
         WebDriverWait(driver, 10).until(EC.url_changes(link))
 
@@ -34,7 +34,8 @@ def user_login(driver, link):
     except ValueError as e:
         Print("Error logging in: ", e)
 
-def return_to_home(driver):
+def go_to_contact_us(driver):
     #return to homepage
-    element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/nav/div/a")))
+    element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="shopify-section-footer"]/section/div/div[1]/div[1]/div[1]/nav/ul/li[1]/a')))
     element.click()
+    print(driver.current_url)
