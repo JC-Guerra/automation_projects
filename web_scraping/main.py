@@ -2,6 +2,8 @@ from selenium import webdriver
 import time
 import get_info
 import automated_login
+from datetime import datetime as dt
+import save_file
 
 #selenium update conflicts with other packages, run in virtual environment
 
@@ -33,8 +35,15 @@ def main(link):
 
         header_xpath = "/html/body/div[1]/div/h1[1]"
         temp_xpath = "/html/body/div[1]/div/h1[2]"
-        scraped_values = get_info.obtain_values(driver, header_xpath, temp_xpath)
-        print(f"Header: {scraped_values[0]} \nWorld temperature: {scraped_values[1]}")
+
+        flag = 0
+        while flag < 3:
+            flag += 1
+            header_value, temp_value = get_info.obtain_values(driver, header_xpath, temp_xpath)
+            content = f"Header: {header_value} \nWorld temperature: {temp_value}"
+
+            save_file.write_file(content)
+            print(f"File has been written with the following: \n{content}")
 
     finally:
         if driver is not None:

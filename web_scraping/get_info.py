@@ -15,5 +15,4 @@ def obtain_values(driver, header, temp):
     time.sleep(3)
     element_header = driver.find_element(By.XPATH, header)
     element_temp = driver.find_element(By.XPATH, temp)
-    result = (element_header.text, get_temp(element_temp.text))
-    return result
+    return element_header.text, get_temp(element_temp.text)
