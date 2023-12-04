@@ -22,17 +22,3 @@ for img in img_list:
     cv2.imwrite(new_img_path, grey_color)
     
     print(f'Processed {img} and saved as {new_img} in {output_dir}')
-
-
-
-
-
-
-# color = cv2.imread('galaxy.jpeg', 1)
-# print(type(color))
-# print(color.ndim)
-
-# #convert to grayscale
-# grey_color = cv2.imread('galaxy.jpeg', 0)
-# cv2.imwrite('galaxy-grey.jpeg', grey_color)
-# print('greyscale photo is created')

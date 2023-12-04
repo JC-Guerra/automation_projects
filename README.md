@@ -17,4 +17,8 @@ Personal Python automation projects for practice and portfolio
         Dynamic variables
         Added config.ini file for pseudo-security
 
+### image_processing
+    Last updated: 04/12/2023
+    Description:
+        Converts images
 
