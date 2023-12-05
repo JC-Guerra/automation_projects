@@ -20,5 +20,10 @@ Personal Python automation projects for practice and portfolio
 ### image_processing
     Last updated: 04/12/2023
     Description:
-        Converts images
+        Converts images to greyscale or resizes it
+    
+    To-do:
+        Ask user for scale when resizing
+        Validate user input for scale
+        Improve error handling
 
