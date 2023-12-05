@@ -1,24 +1,38 @@
 import cv2
 import os
-
-#convert all images to greyscale
-
-input_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'images')
-output_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'grey_images')
+import greyscale_img
+import resize_img
 
 #Create directory if none
 #os.makedirs(output_dir, exist_ok=True)
 
-#Get image list
-img_list = os.listdir(input_dir)
+def ask_user():
+    #ask user for action
+    #is there a better way to code multiple lines?
+    selected_action = int(input('What do you want to do:\n1. Greysale\n2. Resize\nAnswer: '))
+    return selected_action
 
-for img in img_list:
-    img_path = os.path.join(input_dir, img)
+def process_image(selected_action, input_dir, img_list):
+    #call function to process image
+    if selected_action == 1:
+        greyscale_img.convert_img(input_dir, img_list)
+    elif selected_action == 2:
+        resize_img.convert_img(input_dir, img_list)
+    else:
+        print('Please choose a valid action')
+        ask_user()
+        process_image(selected_action, input_dir, img_list)
 
-    grey_color = cv2.imread(img_path, 0)
-    img_name = img.split('.')
-    new_img = img_name[0] + '-new.' + img_name[1]
-    new_img_path = os.path.join(output_dir, new_img)
-    cv2.imwrite(new_img_path, grey_color)
-    
-    print(f'Processed {img} and saved as {new_img} in {output_dir}')
+def main():
+
+    #get image list
+    input_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'images')
+    img_list = os.listdir(input_dir)
+
+    selected_action = ask_user()
+    process_image(selected_action, input_dir, img_list)
+
+    cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main()
