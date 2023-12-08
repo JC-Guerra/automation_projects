@@ -14,7 +14,7 @@ def convert_img(input_dir, img_list):
 
         #resize image
         image = cv2.imread(img_path)
-        new_dim = img_scale(10, image.shape[1], image.shape[0])
+        new_dim = img_scale(20, image.shape[1], image.shape[0])
 
         #set new path
         img_name = img.split('.')
