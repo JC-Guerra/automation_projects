@@ -20,10 +20,14 @@ Personal Python automation projects for practice and portfolio
 ### image_processing
     Last updated: 04/12/2023
     Description:
-        Converts images to greyscale, resized, or with detected faces
+        Program gives option to automate:
+        1. converting image to greyscale
+        2. resizing image
+        3. detecting faces in a photo
+        4. watermarking image
     
     To-do:
-        Ask user for scale when resizing
-        Validate user input for scale
+        Fix validate user input for scale. Loops not recognizing valid input after incorrect value.
+        Image to Text
         Improve error handling
 
